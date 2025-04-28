@@ -14,6 +14,7 @@ public class Live {
     }
 }
 
+
 // package 전체를 컴파일
 // JVM : Java virtual machine
 // javac : java compiler
