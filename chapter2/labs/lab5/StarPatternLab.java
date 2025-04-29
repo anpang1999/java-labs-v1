@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class StarPatternLab {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         System.out.println("패턴 출력을 위한 높이를 입력하세요: ");
         int height = scanner.nextInt();
-        
+
         // 1. 직각삼각형 패턴 (왼쪽 정렬)
         System.out.println("\n1. 직각삼각형 패턴 (왼쪽 정렬)");
         // 예시 (높이 5):
@@ -20,15 +20,15 @@ public class StarPatternLab {
         // ***
         // ****
         // *****
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
         for (int i = 1; i <= height; i++) {
             for (int j = 1; j <= i; j++) {
                 System.out.print("*");
             }
-                System.out.println(" ");
+            System.out.println(" ");
         }
-        
+
         // 2. 직각삼각형 패턴 (오른쪽 정렬)
         System.out.println("\n2. 직각삼각형 패턴 (오른쪽 정렬)");
         // 예시 (높이 5):
@@ -37,10 +37,10 @@ public class StarPatternLab {
         //   ***
         //  ****
         // *****
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
         for (int i = 1; i <= height; i++) {
-            for (int j = 1; j <= (height-i); j++) {
+            for (int j = 1; j <= (height - i); j++) {
                 System.out.print(" ");
             }
             for (int j = 1; j <= i; j++) {
@@ -48,7 +48,7 @@ public class StarPatternLab {
             }
             System.out.println();
         }
-        
+
         // 3. 피라미드 패턴
         System.out.println("\n3. 피라미드 패턴");
         // 예시 (높이 5):
@@ -57,19 +57,19 @@ public class StarPatternLab {
         //   *****
         //  *******
         // *********
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
         for (int i = 1; i <= height; i++) {
             for (int j = 1; j <= (height - i); j++) {
                 System.out.print(" ");
             }
-            for (int k = 1; k <= 2*i -1; k++) {
+            for (int k = 1; k <= 2 * i - 1; k++) {
                 System.out.print("*");
             }
             System.out.println();
         }
-        
-        
+
+
         // 4. 역삼각형 패턴
         System.out.println("\n4. 역삼각형 패턴");
         // 예시 (높이 5):
@@ -78,18 +78,18 @@ public class StarPatternLab {
         //   *****
         //    ***
         //     *
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
         for (int i = 1; i <= height; i++) {
-            for (int j = 0; j < i ; j++) {
+            for (int j = 0; j < i; j++) {
                 System.out.print(" ");
             }
-            for (int k = 1; k <= (2 * (height-i+1)) -1; k++) {
+            for (int k = 1; k <= (2 * (height - i + 1)) - 1; k++) {
                 System.out.print("*");
             }
             System.out.println();
         }
-        
+
         // 5. 다이아몬드 패턴
         System.out.println("\n5. 다이아몬드 패턴");
         // 예시 (높이 5, 실제 높이는 9):
@@ -102,11 +102,28 @@ public class StarPatternLab {
         //   *****
         //    ***
         //     *
-        
-        // TODO: 위와 같은 패턴을 출력하세요.
 
-        
-        
+        // TODO: 위와 같은 패턴을 출력하세요.
+        for (int i = 1; i <= height; i++) {
+            for (int j = 1; j <= (height - i); j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int i = height - 1; i >= 0; i--) {
+            for (int j = 1; j <= (height - i); j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+
         // 6. 모래시계 패턴
         System.out.println("\n6. 모래시계 패턴");
         // 예시 (높이 5, 실제 높이는 9):
@@ -119,10 +136,27 @@ public class StarPatternLab {
         //   *****
         //  *******
         // *********
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
-        
-        
+        for (int i = 1; i <= height; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * (height - i + 1)) - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (int i = height - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * (height - i + 1)) - 1; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
         // 7. 숫자 피라미드 패턴
         System.out.println("\n7. 숫자 피라미드 패턴");
         // 예시 (높이 5):
@@ -131,8 +165,20 @@ public class StarPatternLab {
         //   12321
         //  1234321
         // 123454321
-        
+
         // TODO: 위와 같은 패턴을 출력하세요.
+        for (int i = 1; i <= height; i++) {
+            for (int j = 1; j <= (height - i); j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print(k);
+            }
+            for (int l = i - 1; l >= 1; l--) {
+                System.out.print(l);
+            }
+            System.out.println();
+        }
 
         
         scanner.close();
