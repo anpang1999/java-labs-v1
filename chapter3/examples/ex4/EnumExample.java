@@ -144,18 +144,18 @@ enum Operation {
             return x / y;
         }
     };
-    
+
     private final String symbol;
-    
+
     Operation(String symbol) {
         this.symbol = symbol;
     }
-    
+
     @Override
     public String toString() {
         return symbol;
     }
-    
+
     // 추상 메소드 (각 상수에서 구현해야 함)
     public abstract int calculate(int x, int y);
 }
