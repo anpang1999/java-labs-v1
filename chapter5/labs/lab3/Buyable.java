@@ -7,12 +7,19 @@ package chapter5.labs.lab3;
  * 이 인터페이스는 구매 가능한 상품이 가져야 할 메소드를 선언합니다.
  */
 public interface Buyable {
+
+
     // TODO: 상품의 가격을 반환하는 메소드 선언
-    
+    double getPrice();
+
     
     // TODO: 상품의 이름을 반환하는 메소드 선언
-    
-    
+
+    String getName();
+
+
     // TODO: 상품 정보를 출력하는 default 메소드 구현
-    
+    default void printInfo() {
+        System.out.println(getName() + ": " + getPrice() + "원");
+    }
 } 

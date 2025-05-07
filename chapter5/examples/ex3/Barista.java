@@ -3,7 +3,7 @@ package chapter5.examples.ex3;
 /**
  * 바리스타 역할을 정의하는 인터페이스
  */
-public interface Barista {
+public interface  Barista {
     // 상수 정의
     int PREPARATION_TIME = 3; // 기본 제조 시간(분)
     

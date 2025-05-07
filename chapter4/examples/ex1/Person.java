@@ -8,7 +8,7 @@ public class Person {
     // 필드(클래스의 데이터)
     String name;    // 이름
     int age;        // 나이
-    String gender;  // 성별
+    public String gender;  // 성별
     
     // 메소드(클래스의 기능)
     // 자기소개 메소드
