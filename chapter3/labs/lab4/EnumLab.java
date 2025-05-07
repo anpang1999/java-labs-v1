@@ -1,6 +1,9 @@
 package chapter3.labs.lab4;
 
+import java.time.DayOfWeek;
 import java.util.Scanner;
+
+import static chapter3.labs.lab4.EnumLab.DayOfWeek.valueOf;
 
 /**
  * Enum(열거형) 활용하기 실습
@@ -16,25 +19,17 @@ public class EnumLab {
 
         // TODO: 입력받은 요일에 해당하는 DayOfWeek Enum 상수를 찾아 switch 문에서 활용하세요.
         // 평일(월~금)인 경우 "평일입니다."를, 주말(토, 일)인 경우 "주말입니다."를 출력하세요.
-        enum DayOfWeek {
-            월, 화, 수, 목, 금, 토, 일
-        }
-
         DayOfWeek day = DayOfWeek.valueOf(input);
 
         switch (day) {
             case 월:
-            case 화:
-            case 수:
-            case 목:
-            case 금:
                 System.out.println("평일입니다.");
                 break;
-            case 토:
             case 일:
                 System.out.println("주말입니다.");
                 break;
         }
+
 
         // 2. 계절 Enum 활용하기
         System.out.println("\n===== 계절 Enum 활용하기 =====");
@@ -69,6 +64,7 @@ public class EnumLab {
     }
 
     public enum DayOfWeek {
-        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+        일, 월, 화, 수,
     }
 }
+

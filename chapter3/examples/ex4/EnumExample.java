@@ -95,7 +95,7 @@ enum Day {
 // 필드와 메소드가 있는 Enum 정의
 enum Season {
     SPRING("꽃이 피는 계절", 15),
-    SUMMER("더운 계절", 28),
+    SUMMER("더운 계절",  28),
     FALL("낙엽이 떨어지는 계절", 18),
     WINTER("추운 계절", 5);
     
