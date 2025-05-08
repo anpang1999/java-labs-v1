@@ -13,6 +13,8 @@ public class ShoppingCart {
 
     private ArrayList<Buyable> items;
 
+    ArrayList<Buyable> cart = new ArrayList<>();
+
     // TODO: 생성자 정의
 
     public ShoppingCart() {
