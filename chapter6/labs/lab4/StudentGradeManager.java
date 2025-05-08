@@ -31,7 +31,12 @@ public class StudentGradeManager {
     public void addStudent(int id, String name, int[] scores) {
         // TODO: 디버깅 - 다음 코드에 버그가 있습니다.
         // 동일한 ID를 가진 학생이 이미 있는지 확인하지 않고 있습니다.
-        
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.println("동일한 ID를 가진 학생이 이미 있습니다: " + id);
+                return;
+            }
+        }
         Student student = new Student(id, name, scores);
         students.add(student);
         System.out.println("학생을 추가했습니다: " + student);
@@ -48,7 +53,7 @@ public class StudentGradeManager {
         // 1. 학생을 찾는 로직에 문제가 있습니다.
         // 2. 반환값 처리에 문제가 있습니다.
         
-        for (int i = 0; i <= students.size(); i++) {
+        for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId() == id) {
                 students.get(i).setScores(newScores);
                 return true;
@@ -147,11 +152,12 @@ public class StudentGradeManager {
         // 비교 조건에 문제가 있습니다.
         
         for (Student student : students) {
-            if (student.getId() != id) {  // 잘못된 비교 조건
+            if (student.getId() == id) {  // 잘못된 비교 조건
                 return student;
             }
+
         }
-        
+
         return null;
     }
     
