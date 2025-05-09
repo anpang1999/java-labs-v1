@@ -10,7 +10,7 @@ import java.io.IOException;
  * 바이너리 데이터 처리 예제
  * DataInputStream과 DataOutputStream을 사용한 기본 타입 데이터 입출력
  */
-public class BinaryFileExample {
+public class  BinaryFileExample {
     public static void main(String[] args) {
         String dataFile = "chapter7/examples/ex2/data.bin";
         

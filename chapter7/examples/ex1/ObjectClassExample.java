@@ -77,7 +77,7 @@ class Product {
     // equals() 메소드 오버라이드
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) return true; // 같은 객체면 true
         if (obj == null || getClass() != obj.getClass()) return false;
         
         Product other = (Product) obj;

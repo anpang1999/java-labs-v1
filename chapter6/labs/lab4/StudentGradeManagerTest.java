@@ -35,6 +35,8 @@ public class StudentGradeManagerTest {
             
             // 중복 ID 테스트
             manager.addStudent(1, "중복학생", new int[]{50, 60, 70});
+
+            // 학생
             
             System.out.println("\n총 학생 수: " + manager.getStudentCount());
         } catch (Exception e) {
@@ -60,6 +62,16 @@ public class StudentGradeManagerTest {
             // 테스트 3: 평균 성적 계산
             System.out.println("\n[테스트 3] 평균 성적 계산");
             testAverageCalculation(manager, 2);
+
+            // 테스트 4: 학생 성적 업데이트
+            System.out.println("\n[테스트 4] 학생 성적 업데이트");
+            boolean updated = manager.updateStudentScores(2, new int[]{100, 100, 100});
+            if (updated) {
+                System.out.println("성적이 성공적으로 업데이트되었습니다.");
+                testAverageCalculation(manager, 2);
+            } else {
+                System.out.println("업데이트할 학생을 찾을 수 없습니다.");
+            }
             
         } catch (Exception e) {
             System.out.println("테스트 실행 중 오류 발생: " + e.getMessage());
