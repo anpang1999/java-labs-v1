@@ -42,9 +42,17 @@ public class LibraryManager {
      */
     public List<Book> searchBooksByTitle(String title) {
         // TODO: 제목에 검색어가 포함된 도서를 검색하세요.
-        return books.stream()
-                .filter(book -> book.getTitle().contains(title))
-                .collect(Collectors.toList());
+        List<Book> bookList = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getTitle().contains(title)) {
+                bookList.add(book);
+            }
+        }
+        return bookList;
+
+//        return books.stream()
+//                .filter(book -> book.getTitle().contains(title))
+//                .collect(Collectors.toList());
     }
     
     /**
@@ -104,9 +112,20 @@ public class LibraryManager {
      */
     public List<Book> getSortedBooksByTitle() {
         // TODO: 제목 기준으로 정렬된 도서 목록을 반환하세요.
-        return books.stream()
-                .sorted(Comparator.comparing(Book::getTitle))
-                .collect(Collectors.toList());
+        List<Book> cloneBooks = new ArrayList<>();
+        Collections.sort(cloneBooks,new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getTitle().compareTo(o2.getTitle());
+            }
+
+        });
+        return cloneBooks;
+
+
+//        return books.stream()
+//                .sorted(new TitleComparator())
+//                .collect(Collectors.toList());
     }
     
     /**
@@ -115,7 +134,7 @@ public class LibraryManager {
     public List<Book> getSortedBooksByYear() {
         // TODO: 출판년도 기준으로 정렬된 도서 목록을 반환하세요.
         return books.stream()
-                .sorted(Comparator.comparingInt(Book::getPublicationYear))
+                .sorted(new YearComparator())
                 .collect(Collectors.toList());
     }
     
@@ -125,7 +144,7 @@ public class LibraryManager {
     public List<Book> getSortedBooksByPrice() {
         // TODO: 가격 기준으로 정렬된 도서 목록을 반환하세요.
         return books.stream()
-                .sorted(Comparator.comparingDouble(Book::getPrice))
+                .sorted(new PriceComparator())
                 .collect(Collectors.toList());
     }
     
@@ -152,6 +171,26 @@ public class LibraryManager {
      */
     public List<Book> getAllBooks() {
         // TODO: 전체 도서 목록을 반환하세요.
-        return new ArrayList<>(books);
+        return books;
     }
-} 
+
+    static class TitleComparator implements Comparator<Book> {
+        public int compare(Book b1, Book b2) {
+            return b1.getTitle().compareTo(b2.getTitle());
+        }
+    }
+    static class YearComparator implements Comparator<Book> {
+        public int compare(Book b1, Book b2) {
+            return Integer.compare(b1.getPublicationYear(), b2.getPublicationYear());
+        }
+    }
+
+    static class PriceComparator implements Comparator<Book> {
+        public int compare(Book b1, Book b2) {
+            return Double.compare(b1.getPrice(), b2.getPrice());
+        }
+    }
+
+
+
+}

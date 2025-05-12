@@ -17,6 +17,7 @@ public class PairUtils {
      * 
      * TODO: 메소드를 구현하세요.
      */
+
     public static <K, V> Pair<K, V> of(K key, V value) {
         return new Pair<>(key, value);
     }
@@ -37,7 +38,7 @@ public class PairUtils {
      * 
      * TODO: 메소드를 구현하세요.
      */
-    public static Double sum(Pair<? extends Number, ? extends Number> pair) {
+    public static double sum(Pair<? extends Number, ? extends Number> pair) {
         return pair.getKey().doubleValue() + pair.getValue().doubleValue();
     }
 
@@ -56,22 +57,31 @@ public class PairUtils {
      * 리스트에서 조건에 맞는 요소로 구성된 Pair 객체를 찾는 메소드
      * 
      * TODO: 메소드를 구현하세요.
+     *
      */
-    public static <K, V> Pair<K, V> find(List<Pair<K, V>> list, Predicate<Pair<K, V>> condition) {
-        for (Pair<K, V> pair : list) {
-            if (condition.test(pair)) {
-                return pair;
-            }
-        }
-        return null;
-    }
+
+
 
     /**
      * 와일드카드를 사용하여 Pair 객체의 모든 가능한 타입을 처리하는 메소드
      * 
      * TODO: 메소드를 구현하세요.
      */
-    public static void printPair(Pair<?, ?> pair) {
-        System.out.println("Pair: " + pair);
+    public static void printList(List<?> list) {
+        System.out.println("리스트 내용: " + list);
+    }
+
+    public static double sumOfList(List<? extends Number> list) {
+        double sum = 0.0;
+        for (Number n : list) {
+            sum += n.doubleValue();
+        }
+        return sum;
+    }
+
+    public static void addIntegers(List<? super Integer> list, int n) {
+        for (int i = 1; i <= n; i++) {
+            list.add(i);
+        }
     }
 } 

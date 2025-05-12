@@ -78,6 +78,8 @@ public class Book implements Comparable<Book> {
     @Override
     public int compareTo(Book other) {
         // TODO: ISBN 기준으로 비교하도록 구현하세요.
-        return this.isbn.compareTo(other.isbn);
+
+        return String.CASE_INSENSITIVE_ORDER.compare(getIsbn(), other.getIsbn());
+
     }
 } 

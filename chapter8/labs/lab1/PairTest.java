@@ -1,5 +1,8 @@
 package chapter8.labs.lab1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Lab 1: 제네릭 클래스 구현 테스트
  *
@@ -12,6 +15,7 @@ public class PairTest {
         // TODO: Pair 클래스의 다양한 타입 매개변수를 사용하여 객체를 생성하고 테스트하세요.
         // Integer와 String 타입의 Pair
         Pair<Integer, String> p1 = new Pair<>(1, "one");
+
 
         // Double과 Double 타입의 Pair
         Pair<Double, Double> p2 = new Pair<>(3.14, 2.71);
@@ -39,6 +43,18 @@ public class PairTest {
 
         // 타입 제한 테스트 (Number 하위 클래스만 가능)
 
+
+
         // 와일드카드 메소드 테스트
+        List<String> stringList = new ArrayList<>();
+        stringList.add("apple");
+        stringList.add("banana");
+        PairUtils.printList(stringList);
+
+        List<Integer> integerList = new ArrayList<>();
+        PairUtils.addIntegers(integerList, 5);
+        PairUtils.printList(integerList);
+        System.out.println("Sum of list: " + PairUtils.sumOfList(integerList));
+
     }
-} 
+}
