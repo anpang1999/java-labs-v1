@@ -1,7 +1,8 @@
 package chapter9.labs.lab2;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 스트림 API 활용 실습
@@ -43,16 +44,19 @@ public class StreamLab {
         
         // TODO: 1에서 20까지의 정수 스트림을 생성하여 출력하세요.
         // 힌트: IntStream.rangeClosed(1, 20)...
-        
+        IntStream.rangeClosed(1, 20).forEach(n -> System.out.print(n + " "));
+        System.out.println();
         // TODO: 문자열 배열에서 스트림을 생성하여 출력하세요.
         String[] subjects = {"국어", "영어", "수학", "과학", "사회"};
         // 힌트: Arrays.stream(subjects)...
-        
+        Arrays.stream(subjects).forEach(System.out::println);
+
         // TODO: 리스트에서 스트림을 생성하여 출력하세요.
         List<String> cities = Arrays.asList("서울", "부산", "인천", "대구", "대전", "광주", "울산", "세종");
         // 힌트: cities.stream()...
-        
-        
+        cities.forEach(System.out::println);
+
+
         // 2. 중간 연산과 최종 연산 활용
         System.out.println("\n===== 중간 연산과 최종 연산 =====");
         
@@ -60,11 +64,20 @@ public class StreamLab {
         
         // TODO: 짝수만 필터링하여 제곱한 후 평균을 계산하세요.
         // 힌트: numbers.stream().filter(...).map(...).average()
-        
+        numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .mapToInt(n -> n * n)
+                .average()
+                .ifPresent(avg -> System.out.println("짝수 제공 평균: " + avg));
+
         // TODO: 문자열 리스트에서 길이가 3 이상인 문자열만 대문자로 변환하세요.
         // 힌트: cities.stream().filter(...).map(...)
-        
-        
+        cities.stream()
+                .filter(s -> s.length() >= 3)
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+
+
         // 3. 객체 스트림 처리
         System.out.println("\n===== 객체 스트림 처리 =====");
         
@@ -82,13 +95,24 @@ public class StreamLab {
         
         // TODO: 학과별로 그룹화하여 학생 수를 계산하세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.counting()))
-        
+        Map<String, Long> deptCount = students.stream()
+                .collect(Collectors.groupingBy(Student::getDepartment, Collectors.counting()));
+        System.out.println("\n학과별 학생 수: " + deptCount);
+
         // TODO: 학과별로 그룹화한 후 평균 점수를 계산하세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.averagingInt(...)))
-        
+
+        Map<String, Double> deptAvg = students.stream()
+                .collect(Collectors.groupingBy(Student::getDepartment, Collectors.averagingInt(Student::getScore)));
+        System.out.println("학과별 평균 점수: " + deptAvg);
+
         // TODO: 학년별로 그룹화한 후 최고 점수를 받은 학생을 찾으세요.
         // 힌트: students.stream().collect(Collectors.groupingBy(..., Collectors.maxBy(...)))
-        
+
+        Map<Integer, Optional<Student>> topByGrade = students.stream()
+                .collect(Collectors.groupingBy(Student::getGrade,
+                        Collectors.maxBy(Comparator.comparingInt(Student::getScore))));
+        System.out.println("학년별 최고점: " + topByGrade);
         
         // 4. 텍스트 파일 단어 빈도수 계산
         System.out.println("\n===== 텍스트 파일 단어 빈도수 =====");
@@ -101,6 +125,12 @@ public class StreamLab {
                     
         // TODO: 텍스트에서 단어를 추출하여 빈도수를 계산하세요. (대소문자 구분 없이)
         // 힌트: Arrays.stream(text.split("\\s+|\\.|,")).filter(...).collect(Collectors.groupingBy(...))
+
+        Map<String, Long> wordFreq = Arrays.stream(text.split("\\s+|\\.|,|"))
+                .filter(word -> !word.isEmpty())
+                .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+
+
 
     }
 } 

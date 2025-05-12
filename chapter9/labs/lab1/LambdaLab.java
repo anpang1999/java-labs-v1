@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * 람다식 활용 실습
@@ -52,13 +53,14 @@ public class LambdaLab {
         
         // TODO: 이름 길이 순으로 정렬하는 Comparator를 람다식으로 작성하세요.
         // 힌트: names.sort((s1, s2) -> ...)
-        names.sort((s1, s2) -> s1.compareTo(s2));
+        names.sort(Comparator.comparing(String::length));
         System.out.println("이름 길이 순으로 정렬: " + names);
 
         // TODO: 이름 길이가 같으면 사전순으로 정렬하는 Comparator를 작성하세요. (복합 조건)
         // 힌트: Comparator.comparing(String::length).thenComparing(...)
-        Comparator.comparing(String::length).thenComparing(String::compareTo);
-        System.out.println("이름 길이가 같으면 사전순으로 정렬: "+ names);
+
+        names.sort(Comparator.comparing(String::length).thenComparing(String::compareTo));
+        System.out.println("이름 길이가 같으면 사전순으로 정렬: " + names);
         
         // 3. 필터링 활용
         System.out.println("\n===== 필터링 활용 =====");
@@ -67,29 +69,41 @@ public class LambdaLab {
         
         // TODO: 짝수만 필터링하여 새 리스트에 저장하세요.
         // 힌트: numbers.stream()...collect
-        
+        List<Integer> evens = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .collect(Collectors.toList());
+        System.out.println("짝수만 필터링: " + evens);
+
         // TODO: 3의 배수만 필터링하여 새 리스트에 저장하세요.
-        
-        
+        List<Integer> multiplesOfThree = numbers.stream()
+                .filter(n -> n % 3 == 0)
+                .collect(Collectors.toList());
+        System.out.println("3의 배수만 필터링: " + multiplesOfThree);
+
+
         // 4. forEach와 Consumer 활용
         System.out.println("\n===== forEach와 Consumer 활용 =====");
         
         // TODO: 메소드 참조를 사용하여 names 리스트의 각 이름을 출력하세요.
         // names.forEach(...);
-        
+        names.forEach(System.out::println);
+
         // TODO: 람다식을 사용하여 numbers 리스트의 각 숫자를 제곱하여 출력하세요.
         // numbers.forEach(...);
-        
-        
+        numbers.forEach(n -> System.out.println(n + " 제곱: " + (n * n)));
+
+
         // 5. 메소드 참조 활용
         System.out.println("\n===== 메소드 참조 활용 =====");
         
         // TODO: 정적 메소드 참조를 사용하여 문자열을 정수로 변환하는 Function을 구현하세요.
         // Function<String, Integer> parseIntFunc = ...;
-        
+        Function<String, Integer> parseIntFunc = Integer::parseInt;
+        System.out.println("\"1234\" 를 정수로 변환: " + parseIntFunc.apply("1234"));
         // TODO: 인스턴스 메소드 참조를 사용하여 문자열을 대문자로 변환하는 Function을 구현하세요.
         // Function<String, String> toUpperFunc = ...;
-        
+        Function<String, String> toUpperFunc = String::toUpperCase;
+        System.out.println("\"hello\" 를 대문자로 변환: " + toUpperFunc.apply("hello"));
         
         // 6. 사용자 정의 함수형 인터페이스 활용
         System.out.println("\n===== 사용자 정의 함수형 인터페이스 활용 =====");
@@ -97,6 +111,11 @@ public class LambdaLab {
         // TODO: Calculator 인터페이스의 구현체를 람다식으로 생성하여 add, subtract, multiply, divide 기능을 구현하세요.
         // Calculator add = ...;
         // Calculator subtract = ...;
+        Calculator add = (a, b) -> a + b;
+        Calculator subtract = (a, b) -> a - b;
+        Calculator multiply = (a, b) -> a * b;
+        Calculator divide = (a, b) -> a / b;
+
     }
     
     // 6번 문제를 위한 함수형 인터페이스
